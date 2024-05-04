@@ -15,18 +15,18 @@ def index():
 def giveResult():
     
     #used lines 17 to 22 to test with mobile app
-    audio = request.data
-    with open('received_audio.wav', 'wb') as wav_file:
-        wav_file.write(audio)
+    # audio = request.data
+    # with open('received_audio.wav', 'wb') as wav_file:
+    #     wav_file.write(audio)
     
-    result = generate_result('received_audio.wav')
+    # result = generate_result('received_audio.wav')
     
     # uncomment following lines to test the service from postman with audio file
-    # if 'audio' not in request.files:
-    #     return 'No audio file in the request', 400
+    if 'audio' not in request.files:
+        return 'No audio file in the request', 400
 
-    # audio = request.files['audio']
-    # result = generate_result(audio)
+    audio = request.files['audio']
+    result = generate_result(audio)
     
     return result
 
