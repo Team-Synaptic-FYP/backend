@@ -47,7 +47,7 @@ opt-einsum==3.3.0
 packaging==23.2
 pandas==2.2.1
 pillow==10.2.0
-pip==23.3.1
+# pip==23.3.1
 platformdirs==4.2.0
 ply==3.11
 pooch==1.8.1
