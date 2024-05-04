@@ -134,24 +134,17 @@ def getExplainablePred(spectrogram, audio, model_type):
             if start_sample < end_sample:
                 plt.plot(time_vector[start_sample:end_sample], segment[-(end_sample - start_sample):], color=color, alpha=opasity)
 
-            
-    # print(prediction, label)
-    # if prediction == label:
-    #     res_stat = "possitive"
-    # else:
-    #     res_stat = "negative"
-
-#         # Customize the plot labels, title, and legend
     plt.xlabel('Time (s)')
     plt.ylabel('Amplitude')
-    # plt.title('Highlighted Audio Segments for class ' + str(label_map[label]) + ' predicted as ' + res_stat)
-    plt.legend(handles=legend_elements)
-
+    plt.axis('off')
+    plt.legend().set_visible(False)
+    plt.gca().set_facecolor('none')
+    
     img_buffer = BytesIO()
-    plt.savefig(img_buffer, format='png')
+    plt.savefig(img_buffer, format='png', transparent=True)
     img_buffer.seek(0)
     base64Img = base64.b64encode(img_buffer.getvalue()).decode()
-    base64Img + '=' * ((4 - len(base64Img) % 4) % 4)
+    base64Img += '=' * ((4 - len(base64Img) % 4) % 4)
     plt.clf()
     plt.close()
     return base64Img
